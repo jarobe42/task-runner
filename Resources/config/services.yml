@@ -1,0 +1,37 @@
+services:
+    jarobe.task_runner.driver_factory:
+        class: Jarobe\TaskRunner\Driver\DriverFactory
+        arguments:
+            - ''
+        public: false
+    jarobe.task_runner.hydrator:
+        class: Jarobe\TaskRunner\Hydrator\Hydrator
+        arguments:
+            - '@jarobe.task_runner.registry'
+        public: false
+
+    jarobe.task_runner.processor:
+        class: Jarobe\TaskRunner\Processor\Processor
+        arguments:
+            - '@jarobe.task_runner.driver_factory'
+        public: false
+
+    jarobe.task_runner.registry:
+        class: Jarobe\TaskRunner\Hydrator\Registry
+        arguments:
+          - []
+        public: false
+
+    jarobe.task_runner.task_event_manager:
+        class: Jarobe\TaskRunner\Manager\TaskEventManager
+        arguments:
+            - '@doctrine.orm.report_entity_manager'
+        public: true
+
+    jarobe.task_runner.task_manager:
+        class: Jarobe\TaskRunner\Manager\TaskManager
+        arguments:
+            - '@jarobe.task_runner.task_event_manager'
+            - '@jarobe.task_runner.hydrator'
+            - '@jarobe.task_runner.processor'
+        public: true
