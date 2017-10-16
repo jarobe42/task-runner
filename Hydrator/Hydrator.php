@@ -4,7 +4,7 @@ namespace Jarobe\TaskRunner\Hydrator;
 
 use Jarobe\TaskRunner\Entity\TaskEvent;
 use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Task\TaskTypeInterface;
+use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
 class Hydrator implements HydratorInterface
 {
@@ -27,7 +27,7 @@ class Hydrator implements HydratorInterface
         /** @var TaskTypeInterface $task */
         $task = new $className();
 
-        if(!$task instanceof TaskTypeInterface){
+        if (!$task instanceof TaskTypeInterface) {
             $error = sprintf("Invalid Task Event provided. %s is not a valid task", $className);
             throw new TaskException($error);
         }

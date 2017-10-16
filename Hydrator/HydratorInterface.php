@@ -4,7 +4,7 @@ namespace Jarobe\TaskRunner\Hydrator;
 
 use Jarobe\TaskRunner\Entity\TaskEvent;
 use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Task\TaskTypeInterface;
+use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
 interface HydratorInterface
 {

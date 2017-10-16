@@ -8,7 +8,8 @@ class Registry implements RegistryInterface
 {
     private $taskClassNames;
 
-    public function __construct(array $taskClassNames){
+    public function __construct(array $taskClassNames)
+    {
         $this->taskClassNames = $taskClassNames;
     }
 
@@ -21,12 +22,14 @@ class Registry implements RegistryInterface
      */
     public function getClassByName($name)
     {
-        foreach($this->taskClassNames as $task){
+        foreach ($this->taskClassNames as $task) {
             $taskName = $task::getName();
-            if($taskName === $name){
+            if ($taskName === $name) {
                 return $task;
             }
         }
-        throw new TaskException(sprintf("No Task found for name %s. You may need to add the Task to the Registry", $name));
+        throw new TaskException(
+            sprintf("No Task found for name %s. You may need to add the Task to the Registry", $name)
+        );
     }
 }

@@ -5,7 +5,7 @@ namespace Jarobe\TaskRunner\Manager;
 use Doctrine\ORM\EntityManager;
 use Jarobe\TaskRunner\Entity\TaskEvent;
 use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\Task\TaskTypeInterface;
+use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
 class TaskEventManager
 {
@@ -58,7 +58,7 @@ class TaskEventManager
     public function updateTaskEventWithResult(TaskEvent $taskEvent, TaskResult $result)
     {
         $now = new \DateTime('now');
-        if($result->isSuccess()){
+        if ($result->isSuccess()) {
             $taskEvent->setCompletedAt($now)
                 ->setErrors(null)
             ;

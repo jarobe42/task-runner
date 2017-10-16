@@ -26,8 +26,11 @@ class TaskManager
      */
     private $processor;
 
-    public function __construct(TaskEventManager $taskEventManager, HydratorInterface $hydrator, ProcessorInterface $processor)
-    {
+    public function __construct(
+        TaskEventManager $taskEventManager,
+        HydratorInterface $hydrator,
+        ProcessorInterface $processor
+    ) {
         $this->taskEventManager = $taskEventManager;
         $this->hydrator = $hydrator;
         $this->processor = $processor;

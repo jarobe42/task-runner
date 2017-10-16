@@ -2,7 +2,7 @@
 
 namespace Jarobe\TaskRunner\Driver;
 
-use Jarobe\TaskRunner\Task\TaskTypeInterface;
+use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
 interface TaskDriverInterface
 {

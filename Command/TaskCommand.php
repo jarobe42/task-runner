@@ -45,7 +45,7 @@ abstract class TaskCommand extends ContainerAwareCommand
         $taskBuilder = $this->buildTaskBuilder($taskBuilder, $input);
 
         $validationErrors = $this->validateTask($taskBuilder->getTask());
-        foreach($validationErrors as $validationError){
+        foreach ($validationErrors as $validationError) {
             $taskBuilder->addError($validationError);
         }
 

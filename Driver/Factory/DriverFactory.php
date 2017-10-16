@@ -2,10 +2,9 @@
 
 namespace Jarobe\TaskRunner\Task\Driver\Driver;
 
-
 use Jarobe\TaskRunner\Driver\TaskDriverInterface;
 use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Task\TaskTypeInterface;
+use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
 class DriverFactory
 {
@@ -26,8 +25,8 @@ class DriverFactory
     {
         $class = get_class($task);
 
-        foreach($this->taskDrivers as $taskDriver){
-            if($taskDriver->supportsClass($class)){
+        foreach ($this->taskDrivers as $taskDriver) {
+            if ($taskDriver->supportsClass($class)) {
                 return $taskDriver;
             }
         }
