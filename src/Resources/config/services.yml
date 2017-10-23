@@ -16,10 +16,19 @@ services:
             - '@jarobe.task_runner.driver_factory'
         public: false
 
+    jarobe.task_runner.discovery:
+        class: Jarobe\TaskRunner\Hydrator\Discovery
+        arguments:
+          - "%jarobe_task_runner.types.namespace%"
+          - "%jarobe_task_runner.types.directory%"
+          - "%kernel.root_dir%"
+          - "@annotation_reader"
+        public: false
+
     jarobe.task_runner.registry:
         class: Jarobe\TaskRunner\Hydrator\Registry
         arguments:
-          - []
+          - '@jarobe.task_runner.discovery'
         public: false
 
     jarobe.task_runner.task_event_manager:

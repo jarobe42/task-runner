@@ -1,6 +1,6 @@
 <?php
 
-namespace Jarobe\TaskRunner\TaskType;
+namespace Jarobe\TaskRunner\Type;
 
 interface TaskTypeInterface
 {
