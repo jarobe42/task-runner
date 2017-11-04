@@ -11,6 +11,9 @@ use Doctrine\Common\Annotations\Annotation;
  */
 class TaskType
 {
-    /** @Required */
+    /**
+     * @Required
+     * @var string name
+     */
     public $name;
 }

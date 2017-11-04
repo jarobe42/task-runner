@@ -36,7 +36,7 @@ abstract class TaskCommand extends ContainerAwareCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return TaskEvent
+     * @return int|null
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -64,8 +64,6 @@ abstract class TaskCommand extends ContainerAwareCommand
         $taskEvent = $this->taskManager->process($taskEvent);
 
         $this->postProcess($taskEvent, $input, $output);
-
-        return $taskEvent;
     }
 
     /**

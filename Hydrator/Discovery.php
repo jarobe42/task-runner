@@ -36,7 +36,7 @@ class Discovery implements DiscoveryInterface
     /**
      * @var array
      */
-    private $tasks = [];
+    private $tasks;
 
 
     /**
@@ -55,6 +55,7 @@ class Discovery implements DiscoveryInterface
         $this->reflector = $reflector;
         $this->directory = $directory;
         $this->rootDir = $rootDir;
+        $this->tasks = null;
     }
 
     /**
@@ -63,7 +64,7 @@ class Discovery implements DiscoveryInterface
      */
     public function getTasks()
     {
-        if (!$this->tasks) {
+        if ($this->tasks === null) {
             $this->discoverTaskTypes();
         }
 
