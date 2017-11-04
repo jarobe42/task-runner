@@ -18,5 +18,10 @@ class JarobeTaskRunnerExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('jarobe.task_runner.entity_manager', $config['entity_manager']);
+        $container->setParameter('jarobe.task_runner.types.namespace', $config['types']['namespace']);
+        $container->setParameter('jarobe.task_runner.types.directory', $config['types']['directory']);
+
     }
 }

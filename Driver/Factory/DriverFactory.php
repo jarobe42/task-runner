@@ -1,6 +1,6 @@
 <?php
 
-namespace Jarobe\TaskRunner\Task\Driver\Driver;
+namespace Jarobe\TaskRunner\Driver\Factory;
 
 use Jarobe\TaskRunner\Driver\TaskDriverInterface;
 use Jarobe\TaskRunner\Exception\TaskException;

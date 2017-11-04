@@ -5,11 +5,6 @@ namespace Jarobe\TaskRunner\TaskType;
 interface TaskTypeInterface
 {
     /**
-     * @return string
-     */
-    public static function getName();
-
-    /**
      * @return \DateTime|null
      */
     public function getTargetTime();
