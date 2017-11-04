@@ -129,7 +129,7 @@ class TaskEvent
      * @param \DateTime $initiatedAt
      * @return TaskEvent
      */
-    public function setInitiatedAt($initiatedAt)
+    public function setInitiatedAt(\DateTime $initiatedAt)
     {
         $this->initiatedAt = $initiatedAt;
         return $this;
@@ -147,7 +147,7 @@ class TaskEvent
      * @param \DateTime $completedAt
      * @return TaskEvent
      */
-    public function setCompletedAt($completedAt)
+    public function setCompletedAt(\DateTime $completedAt)
     {
         $this->completedAt = $completedAt;
         return $this;
@@ -165,7 +165,7 @@ class TaskEvent
      * @param $failedAt
      * @return $this
      */
-    public function setFailedAt($failedAt)
+    public function setFailedAt(\DateTime $failedAt)
     {
         $this->failedAt = $failedAt;
         return $this;
@@ -183,7 +183,7 @@ class TaskEvent
      * @param $errors
      * @return $this
      */
-    public function setErrors($errors)
+    public function setErrors(array $errors)
     {
         $this->errors = $errors;
 
@@ -202,7 +202,7 @@ class TaskEvent
      * @param \DateTime $targetTime
      * @return $this
      */
-    public function setTargetTime($targetTime)
+    public function setTargetTime($targetTime = null)
     {
         $this->targetTime = $targetTime;
 

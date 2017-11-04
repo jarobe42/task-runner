@@ -29,7 +29,7 @@ class Reflector
     {
         $annotation = $this->loadAnnotation($class);
 
-        if (!$annotation) {
+        if ($annotation === null) {
             return null;
         }
         return $annotation->name;
