@@ -68,7 +68,7 @@ class TaskEventManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($taskEvent->getInitiatedAt());
         $now = new \DateTime('now');
         $this->taskEventManager->initiateTaskEvent($taskEvent);
-        $this->assertGreaterThan($now, $taskEvent->getInitiatedAt());
+        $this->assertGreaterThanOrEqual($now, $taskEvent->getInitiatedAt());
     }
 
     /**
