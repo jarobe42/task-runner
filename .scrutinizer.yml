@@ -1,12 +1,3 @@
-build:
-    tests:
-        override:
-            -
-                command: 'vendor/bin/phpunit --coverage-clover=build/unit_coverage.xml'
-                coverage:
-                    file: 'build/unit_coverage.xml'
-                    format: 'clover'
-
 filter:
     excluded_paths:
         - "vendor/"
@@ -16,4 +7,5 @@ checks:
     php:
         code_rating: true
         duplication: true
-
+tools:
+    external_code_coverage: true
