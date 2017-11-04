@@ -4,6 +4,7 @@ namespace Jarobe\TaskRunner\Manager;
 
 use Doctrine\ORM\EntityManager;
 use Jarobe\TaskRunner\Entity\TaskEvent;
+use Jarobe\TaskRunner\Hydrator\Reflector;
 use Jarobe\TaskRunner\Model\TaskResult;
 use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
@@ -14,9 +15,15 @@ class TaskEventManager
      */
     private $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    /**
+     * @var Reflector
+     */
+    private $reflector;
+
+    public function __construct(EntityManager $entityManager, Reflector $reflector)
     {
         $this->entityManager = $entityManager;
+        $this->reflector = $reflector;
     }
 
     /**
@@ -25,8 +32,10 @@ class TaskEventManager
      */
     public function createTaskEvent(TaskTypeInterface $task)
     {
+        $taskName = $this->reflector->getNameForClass($task);
+
         $taskEvent = new TaskEvent();
-        $taskEvent->setTaskName($task::getName())
+        $taskEvent->setTaskName($taskName)
             ->setTargetTime($task->getTargetTime())
             ->setPayload($task->getPayload())
         ;

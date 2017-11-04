@@ -21,6 +21,13 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('jarobe_task_runner');
         $rootNode
             ->children()
+                ->scalarNode('entity_manager')->end()
+                ->arrayNode('types')
+                    ->children()
+                        ->scalarNode('directory')->isRequired()->end()
+                        ->scalarNode('namespace')->isRequired()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
         return $treeBuilder;

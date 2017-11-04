@@ -4,10 +4,17 @@ services:
         arguments:
             - ''
         public: false
+
     jarobe.task_runner.hydrator:
         class: Jarobe\TaskRunner\Hydrator\Hydrator
         arguments:
             - '@jarobe.task_runner.registry'
+        public: false
+
+    jarobe.task_runner.reflector:
+        class: Jarobe\TaskRunner\Hydrator\Reflector
+        arguments:
+            - '@annotation.reader'
         public: false
 
     jarobe.task_runner.processor:
@@ -16,16 +23,26 @@ services:
             - '@jarobe.task_runner.driver_factory'
         public: false
 
+    jarobe.task_runner.discovery:
+        class: Pepperstone\TaskBundle\Hydrator\Discovery
+        arguments:
+          - '%jarobe.task_runner.types.namespace%'
+          - '%jarobe.task_runner.types.directory%'
+          - 'kernel.root_dir%'
+          - '@jarobe.task_runner.reflector'
+        public: false
+
     jarobe.task_runner.registry:
         class: Jarobe\TaskRunner\Hydrator\Registry
         arguments:
-          - []
+          - ''
         public: false
 
     jarobe.task_runner.task_event_manager:
         class: Jarobe\TaskRunner\Manager\TaskEventManager
         arguments:
             - '@doctrine.orm.report_entity_manager'
+            - '@jarobe.task_runner.reflector'
         public: true
 
     jarobe.task_runner.task_manager:
