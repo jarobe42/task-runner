@@ -183,7 +183,7 @@ class TaskEvent
      * @param $errors
      * @return $this
      */
-    public function setErrors(array $errors)
+    public function setErrors(array $errors = null)
     {
         $this->errors = $errors;
 

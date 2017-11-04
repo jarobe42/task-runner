@@ -14,6 +14,11 @@ class TaskResult
      */
     private $errors;
 
+    public function __construct()
+    {
+        $this->errors = [];
+    }
+
     /**
      * @return bool
      */
@@ -44,7 +49,7 @@ class TaskResult
      * @param array $errors
      * @return TaskResult
      */
-    public function setErrors($errors)
+    public function setErrors(array $errors)
     {
         $this->errors = $errors;
         return $this;

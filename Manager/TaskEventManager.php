@@ -38,8 +38,7 @@ class TaskEventManager
 
         if ($taskName === null){
             throw new TaskException(
-                sprintf("No Task type found for task %s", get_class($task)),
-                $task
+                sprintf("No Task type found for task %s", get_class($task))
             );
         }
 

@@ -4,7 +4,7 @@ namespace Pepperstone\ReportBundle\Task\Processor;
 
 use Jarobe\TaskRunner\Exception\TaskException;
 use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\Task\Driver\Driver\DriverFactory;
+use Jarobe\TaskRunner\Driver\Factory\DriverFactory;
 use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
 
 class Processor implements ProcessorInterface
