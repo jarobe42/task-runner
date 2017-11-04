@@ -180,7 +180,7 @@ class TaskEvent
     }
 
     /**
-     * @param $errors
+     * @param array|null $errors
      * @return $this
      */
     public function setErrors(array $errors = null)

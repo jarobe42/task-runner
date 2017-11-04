@@ -23,7 +23,7 @@ class Reflector
 
     /**
      * @param $class
-     * @return null
+     * @return string|null
      */
     public function getNameForClass($class)
     {
