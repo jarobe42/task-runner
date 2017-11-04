@@ -34,7 +34,7 @@ class Discovery implements DiscoveryInterface
     private $rootDir;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $tasks;
 
@@ -65,7 +65,7 @@ class Discovery implements DiscoveryInterface
     public function getTasks()
     {
         if ($this->tasks === null) {
-            $this->discoverTaskTypes();
+            $this->tasks = $this->discoverTaskTypes();
         }
 
         return $this->tasks;
@@ -73,6 +73,7 @@ class Discovery implements DiscoveryInterface
 
     /**
      * Discovers tasks
+     * @return array $tasks
      */
     private function discoverTaskTypes()
     {
@@ -80,17 +81,19 @@ class Discovery implements DiscoveryInterface
         $finder = new Finder();
         $finder->files()->in($path);
 
+        $tasks = [];
         /** @var SplFileInfo $file */
         foreach ($finder as $file) {
             /** @var TaskTypeInterface $class */
             $class = $this->namespace . '\\' . $file->getBasename('.php');
 
             $name = $this->reflector->getNameForClass($class);
-            if (!$name) {
+            if ($name === null) {
                 continue;
             }
             /** @var TaskType $annotation */
-            $this->tasks[$name] = $class;
+            $tasks[$name] = $class;
         }
+        return $tasks;
     }
 }
