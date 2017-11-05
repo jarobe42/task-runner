@@ -49,7 +49,7 @@ class Processor implements ProcessorInterface
 
         //Run the task, and then check for errors
         $errors = $driver->run($task);
-        if ($validationErrors !== null && count($errors) > 0) {
+        if ($errors !== null && count($errors) > 0) {
             $taskResult->setSuccess(false)
                 ->setErrors($errors)
             ;
