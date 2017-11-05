@@ -1,9 +1,9 @@
 <?php
 
-namespace Pepperstone\ReportBundle\Task\Processor;
+namespace Jarobe\TaskRunnerBundle\Processor;
 
-use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Model\TaskResult;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 interface ProcessorInterface
 {

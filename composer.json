@@ -1,5 +1,5 @@
 {
-  "name": "jarobe42/task-runner",
+  "name": "jarobe42/task-runner-bundle",
   "description": "A library for running tasks",
   "keywords": [],
   "license": "MIT",
@@ -25,12 +25,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Jarobe\\TaskRunner\\": ""
+      "Jarobe\\TaskRunnerBundle\\": ""
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Jarobe\\TaskRunner\\": "Tests/"
+      "Tests\\Jarobe\\TaskRunnerBundle\\": "Tests/"
     }
   },
   "scripts": {

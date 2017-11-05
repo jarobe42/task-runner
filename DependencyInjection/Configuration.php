@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Jarobe\TaskRunner\DependencyInjection;
+namespace Jarobe\TaskRunnerBundle\DependencyInjection;
 
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -21,8 +21,11 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('jarobe_task_runner');
         $rootNode
             ->children()
-                ->scalarNode('entity_manager')->end()
+                ->scalarNode('entity_manager')
+                    ->isRequired()
+                ->end()
                 ->arrayNode('types')
+                    ->isRequired()
                     ->children()
                         ->scalarNode('directory')->isRequired()->end()
                         ->scalarNode('namespace')->isRequired()->end()

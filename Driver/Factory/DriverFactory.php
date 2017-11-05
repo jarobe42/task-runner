@@ -1,10 +1,10 @@
 <?php
 
-namespace Jarobe\TaskRunner\Driver\Factory;
+namespace Jarobe\TaskRunnerBundle\Driver\Factory;
 
-use Jarobe\TaskRunner\Driver\TaskDriverInterface;
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Driver\TaskDriverInterface;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class DriverFactory
 {

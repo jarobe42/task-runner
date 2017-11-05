@@ -1,6 +1,6 @@
 <?php
 
-namespace Jarobe\TaskRunner\Model;
+namespace Jarobe\TaskRunnerBundle\Model;
 
 class TaskResult
 {

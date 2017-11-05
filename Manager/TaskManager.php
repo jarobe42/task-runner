@@ -1,10 +1,10 @@
 <?php
 
-namespace Jarobe\TaskRunner\Manager;
+namespace Jarobe\TaskRunnerBundle\Manager;
 
-use Jarobe\TaskRunner\Entity\TaskEvent;
-use Jarobe\TaskRunner\Hydrator\HydratorInterface;
-use Pepperstone\ReportBundle\Task\Processor\ProcessorInterface;
+use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Hydrator\HydratorInterface;
+use Jarobe\TaskRunnerBundle\Processor\ProcessorInterface;
 
 /**
  * Responsible for processing a Task.

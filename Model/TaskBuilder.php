@@ -1,8 +1,8 @@
 <?php
 
-namespace Jarobe\TaskRunner\Model;
+namespace Jarobe\TaskRunnerBundle\Model;
 
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class TaskBuilder
 {

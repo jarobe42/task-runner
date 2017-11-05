@@ -1,8 +1,8 @@
 <?php
 
-namespace Jarobe\TaskRunner\Driver;
+namespace Jarobe\TaskRunnerBundle\Driver;
 
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 interface TaskDriverInterface
 {

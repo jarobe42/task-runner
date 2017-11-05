@@ -1,6 +1,6 @@
 <?php
 
-namespace Jarobe\TaskRunner\Exception;
+namespace Jarobe\TaskRunnerBundle\Exception;
 
 class TaskException extends \Exception
 {

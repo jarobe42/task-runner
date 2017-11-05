@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Jarobe\TaskRunner\Tests\Hydrator;
+namespace Jarobe\TaskRunnerBundle\Tests\Hydrator;
 
 
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Hydrator\DiscoveryInterface;
-use Jarobe\TaskRunner\Hydrator\Registry;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\Hydrator\DiscoveryInterface;
+use Jarobe\TaskRunnerBundle\Hydrator\Registry;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class RegistryTest extends \PHPUnit_Framework_TestCase
 {

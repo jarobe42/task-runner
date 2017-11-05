@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Jarobe\TaskRunner\Entity;
+namespace Jarobe\TaskRunnerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

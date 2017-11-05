@@ -1,11 +1,11 @@
 <?php
 
-namespace Pepperstone\ReportBundle\Task\Processor;
+namespace Jarobe\TaskRunnerBundle\Processor;
 
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\Driver\Factory\DriverFactory;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\Model\TaskResult;
+use Jarobe\TaskRunnerBundle\Driver\Factory\DriverFactory;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class Processor implements ProcessorInterface
 {

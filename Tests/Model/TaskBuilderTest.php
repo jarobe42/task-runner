@@ -1,8 +1,8 @@
 <?php
 
-namespace Jarobe\TaskRunner\Tests\Model;
+namespace Jarobe\TaskRunnerBundle\Tests\Model;
 
-use Jarobe\TaskRunner\Model\TaskBuilder;
+use Jarobe\TaskRunnerBundle\Model\TaskBuilder;
 
 class TaskBuilderTest extends \PHPUnit_Framework_TestCase
 {

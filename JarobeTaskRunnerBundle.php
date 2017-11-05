@@ -1,12 +1,13 @@
 <?php
 
-namespace Jarobe\TaskRunner;
+namespace Jarobe\TaskRunnerBundle;
 
-use Jarobe\TaskRunner\DependencyInjection\Compiler\EntityManagerCompilerPass;
+use Jarobe\TaskRunnerBundle\DependencyInjection\Compiler\DriverCompilerPass;
+use Jarobe\TaskRunnerBundle\DependencyInjection\Compiler\EntityManagerCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class JarobeTaskRunner extends Bundle
+class JarobeTaskRunnerBundle extends Bundle
 {
     /**
      * @param ContainerBuilder $container
@@ -14,6 +15,7 @@ class JarobeTaskRunner extends Bundle
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
+        $container->addCompilerPass(new DriverCompilerPass());
         $container->addCompilerPass(new EntityManagerCompilerPass());
     }
 }

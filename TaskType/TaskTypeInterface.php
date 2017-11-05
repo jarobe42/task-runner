@@ -1,9 +1,14 @@
 <?php
 
-namespace Jarobe\TaskRunner\TaskType;
+namespace Jarobe\TaskRunnerBundle\TaskType;
 
 interface TaskTypeInterface
 {
+    /**
+     * @return string
+     */
+    public static function getName();
+
     /**
      * @return \DateTime|null
      */
