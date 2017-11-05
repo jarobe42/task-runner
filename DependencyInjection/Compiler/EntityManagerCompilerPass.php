@@ -18,7 +18,11 @@ class EntityManagerCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $entityManagerName = $container->getParameter('jarobe.task_runner.entity_manager');
+
         $entityManagerReference = new Reference('doctrine.orm.entity_manager');
+        if ($entityManagerName !== null) {
+            $entityManagerReference = new Reference('doctrine.orm.entity_manager.'.$entityManagerName);
+        }
 
         $taskEventManagerDefinition = $container->getDefinition('jarobe.task_runner.task_event_manager');
         $taskEventManagerDefinition->replaceArgument(0, $entityManagerReference);
