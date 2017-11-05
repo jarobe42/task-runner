@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Jarobe\TaskRunner\Tests\Manager;
+namespace Jarobe\TaskRunnerBundle\Tests\Manager;
 
 use Doctrine\ORM\EntityManager;
-use Jarobe\TaskRunner\Entity\TaskEvent;
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Hydrator\Reflector;
-use Jarobe\TaskRunner\Manager\TaskEventManager;
-use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\Hydrator\Reflector;
+use Jarobe\TaskRunnerBundle\Manager\TaskEventManager;
+use Jarobe\TaskRunnerBundle\Model\TaskResult;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 use Prophecy\Prophecy\ObjectProphecy;
 
 class TaskEventManagerTest extends \PHPUnit_Framework_TestCase
@@ -48,14 +48,6 @@ class TaskEventManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($taskTypeName, $taskEvent->getTaskName());
         $this->assertEquals($targetTime, $taskEvent->getTargetTime());
-        $this->assertEquals($payload, $taskEvent->getPayload());
-
-        /** @var TaskTypeInterface $taskType */
-        $taskType = $this->prophesize(TaskTypeInterface::class);
-        $this->reflector->getNameForClass($taskType)->willReturn(null);
-
-        $this->setExpectedException(TaskException::class);
-        $taskEvent = $this->taskEventManager->createTaskEvent($taskType->reveal());
     }
 
     /**

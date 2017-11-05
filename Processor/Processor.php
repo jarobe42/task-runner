@@ -1,11 +1,11 @@
 <?php
 
-namespace Pepperstone\ReportBundle\Task\Processor;
+namespace Jarobe\TaskRunnerBundle\Processor;
 
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\Driver\Factory\DriverFactory;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\Model\TaskResult;
+use Jarobe\TaskRunnerBundle\Driver\Factory\DriverFactory;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class Processor implements ProcessorInterface
 {
@@ -40,7 +40,7 @@ class Processor implements ProcessorInterface
 
         //See if there's any issues with the tasks before running.
         $validationErrors = $driver->canRun($task);
-        if (count($validationErrors) > 0) {
+        if ($validationErrors !== null && count($validationErrors) > 0) {
             $taskResult->setSuccess(false)
                 ->setErrors($validationErrors)
             ;
@@ -49,7 +49,7 @@ class Processor implements ProcessorInterface
 
         //Run the task, and then check for errors
         $errors = $driver->run($task);
-        if (count($errors) > 0) {
+        if ($validationErrors !== null && count($errors) > 0) {
             $taskResult->setSuccess(false)
                 ->setErrors($errors)
             ;

@@ -1,13 +1,13 @@
 <?php
 
-namespace Jarobe\TaskRunner\Manager;
+namespace Jarobe\TaskRunnerBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
-use Jarobe\TaskRunner\Entity\TaskEvent;
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\Hydrator\Reflector;
-use Jarobe\TaskRunner\Model\TaskResult;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\Hydrator\Reflector;
+use Jarobe\TaskRunnerBundle\Model\TaskResult;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class TaskEventManager
 {
@@ -34,16 +34,9 @@ class TaskEventManager
      */
     public function createTaskEvent(TaskTypeInterface $task)
     {
-        $taskName = $this->reflector->getNameForClass($task);
-
-        if ($taskName === null){
-            throw new TaskException(
-                sprintf("No Task type found for task %s", get_class($task))
-            );
-        }
-
         $taskEvent = new TaskEvent();
-        $taskEvent->setTaskName($taskName)
+        $name = $this->reflector->getNameForClass($task);
+        $taskEvent->setTaskName($name)
             ->setTargetTime($task->getTargetTime())
             ->setPayload($task->getPayload())
         ;

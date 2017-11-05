@@ -1,10 +1,10 @@
 <?php
 
-namespace Jarobe\TaskRunner\Hydrator;
+namespace Jarobe\TaskRunnerBundle\Hydrator;
 
-use Jarobe\TaskRunner\Entity\TaskEvent;
-use Jarobe\TaskRunner\Exception\TaskException;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 interface HydratorInterface
 {

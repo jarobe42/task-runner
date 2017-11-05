@@ -1,6 +1,6 @@
 <?php
 
-namespace Jarobe\TaskRunner\Hydrator;
+namespace Jarobe\TaskRunnerBundle\Hydrator;
 
 interface DiscoveryInterface
 {

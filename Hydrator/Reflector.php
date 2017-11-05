@@ -1,51 +1,19 @@
 <?php
 
 
-namespace Jarobe\TaskRunner\Hydrator;
+namespace Jarobe\TaskRunnerBundle\Hydrator;
 
-use Doctrine\Common\Annotations\Reader;
-use Jarobe\TaskRunner\Annotation\TaskType as TaskTypeAnnotation;
+
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class Reflector
 {
     /**
-     * @var Reader
+     * @param TaskTypeInterface $taskType
+     * @return string
      */
-    private $annotationReader;
-
-    /**
-     * @param Reader $annotationReader
-     */
-    public function __construct(Reader $annotationReader)
+    public function getNameForClass(TaskTypeInterface $taskType)
     {
-        $this->annotationReader = $annotationReader;
-    }
-
-    /**
-     * @param $class
-     * @return string|null
-     */
-    public function getNameForClass($class)
-    {
-        $annotation = $this->loadAnnotation($class);
-
-        if ($annotation === null) {
-            return null;
-        }
-        return $annotation->name;
-    }
-
-    /**
-     * @param $class
-     * @return TaskTypeAnnotation|null
-     */
-    protected function loadAnnotation($class)
-    {
-        $annotationClass = TaskTypeAnnotation::class;
-
-        $classReflection = new \ReflectionClass($class);
-        /** @var TaskTypeAnnotation $annotation */
-        $annotation = $this->annotationReader->getClassAnnotation($classReflection, $annotationClass);
-        return $annotation;
+        return $taskType::getName();
     }
 }

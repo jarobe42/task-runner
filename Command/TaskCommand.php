@@ -1,12 +1,12 @@
 <?php
 
-namespace Jarobe\TaskRunner\Command;
+namespace Jarobe\TaskRunnerBundle\Command;
 
-use Jarobe\TaskRunner\Entity\TaskEvent;
-use Jarobe\TaskRunner\Manager\TaskEventManager;
-use Jarobe\TaskRunner\Manager\TaskManager;
-use Jarobe\TaskRunner\Model\TaskBuilder;
-use Jarobe\TaskRunner\TaskType\TaskTypeInterface;
+use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Manager\TaskEventManager;
+use Jarobe\TaskRunnerBundle\Manager\TaskManager;
+use Jarobe\TaskRunnerBundle\Model\TaskBuilder;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

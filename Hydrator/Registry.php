@@ -1,8 +1,8 @@
 <?php
 
-namespace Jarobe\TaskRunner\Hydrator;
+namespace Jarobe\TaskRunnerBundle\Hydrator;
 
-use Jarobe\TaskRunner\Exception\TaskException;
+use Jarobe\TaskRunnerBundle\Exception\TaskException;
 
 class Registry implements RegistryInterface
 {
