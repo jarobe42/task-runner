@@ -67,7 +67,7 @@ class TaskEvent
     private $completedAt;
 
     /**
-     * @var array
+     * @var array|null
      *
      * @ORM\Column(name="errors", type="json_array", nullable=true)
      */
