@@ -33,6 +33,11 @@ class Discovery implements DiscoveryInterface
      */
     private $tasks;
 
+    /**
+     * @var Reflector
+     */
+    private $reflector;
+
 
     /**
      * WorkerDiscovery constructor.
@@ -42,13 +47,15 @@ class Discovery implements DiscoveryInterface
      * @param $directory
      *   The directory of the workers
      * @param $rootDir
+     * @param Reflector $reflector
      */
-    public function __construct($namespace, $directory, $rootDir)
+    public function __construct($namespace, $directory, $rootDir, Reflector $reflector)
     {
         $this->namespace = $namespace;
         $this->directory = $directory;
         $this->rootDir = $rootDir;
         $this->tasks = null;
+        $this->reflector = $reflector;
     }
 
     /**
@@ -84,9 +91,7 @@ class Discovery implements DiscoveryInterface
                 continue;
             }
 
-            $name = $class::getName();
-
-            /** @var TaskType $annotation */
+            $name = $this->reflector->getNameForClass($class);
             $tasks[$name] = $class;
         }
         return $tasks;

@@ -48,14 +48,6 @@ class TaskEventManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($taskTypeName, $taskEvent->getTaskName());
         $this->assertEquals($targetTime, $taskEvent->getTargetTime());
-        $this->assertEquals($payload, $taskEvent->getPayload());
-
-        /** @var TaskTypeInterface $taskType */
-        $taskType = $this->prophesize(TaskTypeInterface::class);
-        $this->reflector->getNameForClass($taskType)->willReturn(null);
-
-        $this->setExpectedException(TaskException::class);
-        $taskEvent = $this->taskEventManager->createTaskEvent($taskType->reveal());
     }
 
     /**

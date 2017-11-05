@@ -5,6 +5,10 @@ services:
             - ''
         public: false
 
+    jarobe.task_runner.reflector:
+        class: Jarobe\TaskRunnerBundle\Hydrator\Reflector
+        public: false
+
     jarobe.task_runner.hydrator:
         class: Jarobe\TaskRunnerBundle\Hydrator\Hydrator
         arguments:
@@ -23,6 +27,7 @@ services:
           - '%jarobe.task_runner.types.namespace%'
           - '%jarobe.task_runner.types.directory%'
           - 'kernel.root_dir%'
+          - '@jarobe.task_runner.reflector'
         public: false
 
     jarobe.task_runner.registry:
@@ -35,6 +40,7 @@ services:
         class: Jarobe\TaskRunnerBundle\Manager\TaskEventManager
         arguments:
             - '@doctrine.orm.report_entity_manager'
+            - '@jarobe.task_runner.reflector'
         public: true
 
     jarobe.task_runner.task_manager:

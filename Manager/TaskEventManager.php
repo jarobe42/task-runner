@@ -21,9 +21,10 @@ class TaskEventManager
      */
     private $reflector;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, Reflector $reflector)
     {
         $this->entityManager = $entityManager;
+        $this->reflector = $reflector;
     }
 
     /**
@@ -34,7 +35,8 @@ class TaskEventManager
     public function createTaskEvent(TaskTypeInterface $task)
     {
         $taskEvent = new TaskEvent();
-        $taskEvent->setTaskName($task::getName())
+        $name = $this->reflector->getNameForClass($task);
+        $taskEvent->setTaskName($name)
             ->setTargetTime($task->getTargetTime())
             ->setPayload($task->getPayload())
         ;
