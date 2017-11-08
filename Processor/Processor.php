@@ -37,7 +37,6 @@ class Processor implements ProcessorInterface
             return $taskResult;
         }
 
-
         //See if there's any issues with the tasks before running.
         $validationErrors = $driver->canRun($task);
         if ($validationErrors !== null && count($validationErrors) > 0) {
