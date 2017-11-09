@@ -3,9 +3,7 @@
 
 namespace Jarobe\TaskRunnerBundle\Hydrator;
 
-use Doctrine\Common\Annotations\Reader;
 use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
-use Jarobe\TaskRUnner\Annotation\TaskType;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -87,7 +85,7 @@ class Discovery implements DiscoveryInterface
             /** @var TaskTypeInterface $class */
             $class = $this->namespace . '\\' . $file->getBasename('.php');
 
-            if (!$class instanceof TaskTypeInterface) {
+            if (!in_array(TaskTypeInterface::class, class_implements($class))) {
                 continue;
             }
 
