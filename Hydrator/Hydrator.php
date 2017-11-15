@@ -2,7 +2,7 @@
 
 namespace Jarobe\TaskRunnerBundle\Hydrator;
 
-use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Entity\TaskEventInterface;
 use Jarobe\TaskRunnerBundle\Exception\TaskException;
 use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
@@ -16,11 +16,11 @@ class Hydrator implements HydratorInterface
     }
 
     /**
-     * @param TaskEvent $taskEvent
+     * @param TaskEventInterface $taskEvent
      * @return TaskTypeInterface
      * @throws TaskException
      */
-    public function getTaskFromTaskEvent(TaskEvent $taskEvent)
+    public function getTaskFromTaskEvent(TaskEventInterface $taskEvent)
     {
         $className = $this->registry->getClassByName($taskEvent->getTaskName());
 

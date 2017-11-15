@@ -4,9 +4,11 @@ namespace Jarobe\TaskRunnerBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Entity\TaskEventInterface;
 use Jarobe\TaskRunnerBundle\Exception\TaskException;
 use Jarobe\TaskRunnerBundle\Hydrator\Reflector;
 use Jarobe\TaskRunnerBundle\Model\TaskResult;
+use Jarobe\TaskRunnerBundle\Provider\TaskEventProviderInterface;
 use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 class TaskEventManager
@@ -28,32 +30,28 @@ class TaskEventManager
     }
 
     /**
+     * @param TaskEventInterface $taskEventInterface
      * @param TaskTypeInterface $task
-     * @return TaskEvent
-     * @throws TaskException
+     * @return TaskEventInterface
      */
-    public function createTaskEvent(TaskTypeInterface $task)
+    public function createTaskEvent(TaskEventInterface $taskEventInterface, TaskTypeInterface $task)
     {
-        $taskEvent = new TaskEvent();
         $name = $this->reflector->getNameForClass($task);
-        $taskEvent->setTaskName($name)
-            ->setTargetTime($task->getTargetTime())
-            ->setPayload($task->getPayload())
-        ;
 
-        $this->entityManager->persist($taskEvent);
-        $this->entityManager->flush($taskEvent);
-        return $taskEvent;
+        $taskEventInterface->intialize($name, $task);
+
+        $this->entityManager->persist($taskEventInterface);
+        $this->entityManager->flush($taskEventInterface);
+        return $taskEventInterface;
     }
 
     /**
-     * @param TaskEvent $taskEvent
-     * @return TaskEvent
+     * @param TaskEventInterface $taskEvent
+     * @return TaskEventInterface
      */
-    public function initiateTaskEvent(TaskEvent $taskEvent)
+    public function initiateTaskEvent(TaskEventInterface $taskEvent)
     {
-        $now = new \DateTime('now');
-        $taskEvent->setInitiatedAt($now);
+        $taskEvent->initiate();
 
         $this->entityManager->flush($taskEvent);
 
@@ -61,21 +59,16 @@ class TaskEventManager
     }
 
     /**
-     * @param TaskEvent $taskEvent
+     * @param TaskEventInterface $taskEvent
      * @param TaskResult $result
-     * @return TaskEvent
+     * @return TaskEventInterface
      */
-    public function updateTaskEventWithResult(TaskEvent $taskEvent, TaskResult $result)
+    public function updateTaskEventWithResult(TaskEventInterface $taskEvent, TaskResult $result)
     {
-        $now = new \DateTime('now');
         if ($result->isSuccess()) {
-            $taskEvent->setCompletedAt($now)
-                ->setErrors(null)
-            ;
+            $taskEvent->setAsCompleted();
         } else {
-            $taskEvent->setFailedAt($now)
-                ->setErrors($result->getErrors())
-            ;
+            $taskEvent->setAsFailed($result->getErrors());
         }
         $this->entityManager->flush($taskEvent);
         return $taskEvent;

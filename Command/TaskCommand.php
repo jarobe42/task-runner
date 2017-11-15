@@ -13,26 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-abstract class TaskCommand extends ContainerAwareCommand
+abstract class TaskCommand extends AbstractTaskCommand
 {
-    /** @var TaskEventManager */
-    private $taskEventManager;
-
-    /** @var TaskManager */
-    private $taskManager;
-
-    /** @var ValidatorInterface */
-    private $validator;
-
-    public function initialize(InputInterface $input, OutputInterface $output)
-    {
-        parent::initialize($input, $output);
-        $container = $this->getContainer();
-        $this->taskEventManager = $container->get('jarobe.task_runner.task_event_manager');
-        $this->taskManager = $container->get('jarobe.task_runner.task_manager');
-        $this->validator = $container->get('validator');
-    }
-
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
@@ -41,7 +23,6 @@ abstract class TaskCommand extends ContainerAwareCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $taskBuilder = new TaskBuilder();
-
         $taskBuilder = $this->buildTaskBuilder($taskBuilder, $input);
 
         $validationErrors = $this->validateTask($taskBuilder->getTask());
@@ -57,13 +38,10 @@ abstract class TaskCommand extends ContainerAwareCommand
         }
 
         //Create the TaskEvent
-        $taskEvent = $this->taskEventManager->createTaskEvent($taskBuilder->getTask());
-
-        $this->preProcess($taskEvent, $input, $output);
-
-        $taskEvent = $this->taskManager->process($taskEvent);
-
-        $this->postProcess($taskEvent, $input, $output);
+        $taskEvent = new TaskEvent();
+        $taskEvent = $this->taskEventManager->createTaskEvent($taskEvent, $taskBuilder->getTask());
+        $taskEvent = $this->process($taskEvent, $input, $output);
+        return $taskEvent->isComplete() ? 1 : 0;
     }
 
     /**
@@ -72,49 +50,4 @@ abstract class TaskCommand extends ContainerAwareCommand
      * @return TaskBuilder
      */
     abstract protected function buildTaskBuilder(TaskBuilder $taskBuilder, InputInterface $input);
-
-    /**
-     * Overwrite this function if you want to do something before we process the TaskEvent
-     * @param TaskEvent $taskEvent
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    protected function prepareTaskEvent(TaskEvent $taskEvent, InputInterface $input, OutputInterface $output)
-    {
-    }
-
-    /**
-     * Overwrite this function if you want to do something before we process the TaskEvent
-     * @param TaskEvent $taskEvent
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    protected function preProcess(TaskEvent $taskEvent, InputInterface $input, OutputInterface $output)
-    {
-    }
-
-    /**
-     * Overwrite this function if you want to do something before we process the TaskEvent
-     * @param TaskEvent $taskEvent
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    protected function postProcess(TaskEvent $taskEvent, InputInterface $input, OutputInterface $output)
-    {
-    }
-
-    /**
-     * @param TaskTypeInterface $task
-     * @return array
-     */
-    protected function validateTask(TaskTypeInterface $task)
-    {
-        $validationErrors = [];
-        $validationErrorList = $this->validator->validate($task);
-        /** @var ConstraintViolationInterface $error */
-        foreach($validationErrorList as $error){
-            $validationErrors[] = sprintf("%s: %s", $error->getPropertyPath(), $error->getMessage());
-        }
-        return $validationErrors;
-    }
 }

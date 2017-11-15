@@ -26,7 +26,7 @@ services:
         arguments:
           - '%jarobe.task_runner.types.namespace%'
           - '%jarobe.task_runner.types.directory%'
-          - 'kernel.root_dir%'
+          - '%kernel.root_dir%'
           - '@jarobe.task_runner.reflector'
         public: false
 
@@ -36,10 +36,23 @@ services:
           - '@jarobe.task_runner.discovery'
         public: false
 
+    jarobe.task_runner.task_event_repository:
+        class: Jarobe\TaskRunnerBundle\Repository\TaskEventRepository
+        factory: ''
+        arguments:
+            - 'Jarobe\TaskRunnerBundle\Entity\TaskEvent'
+        public: false
+
+    jarobe.task_runner.task_event_provider:
+        class: Jarobe\TaskRunnerBundle\Provider\TaskEventProvider
+        arguments:
+            - '@jarobe.task_runner.task_event_repository'
+        public: true
+
     jarobe.task_runner.task_event_manager:
         class: Jarobe\TaskRunnerBundle\Manager\TaskEventManager
         arguments:
-            - '@doctrine.orm.report_entity_manager'
+            - ''
             - '@jarobe.task_runner.reflector'
         public: true
 

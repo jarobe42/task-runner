@@ -4,12 +4,13 @@
 namespace Jarobe\TaskRunnerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Jarobe\TaskRunnerBundle\TaskType\TaskTypeInterface;
 
 /**
  * @ORM\Table(name="task_event")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Jarobe\TaskRunnerBundle\Repository\TaskEventRepository")
  */
-class TaskEvent
+class TaskEvent implements TaskEventInterface
 {
     /**
      * @var integer
@@ -207,5 +208,56 @@ class TaskEvent
         $this->targetTime = $targetTime;
 
         return $this;
+    }
+
+    /**
+     * @return TaskEventInterface
+     */
+    public function initiate()
+    {
+        $this->setInitiatedAt(new \DateTime());
+    }
+
+    /**
+     * @return TaskEventInterface
+     */
+    public function setAsCompleted()
+    {
+        $this->setCompletedAt(new \DateTime());
+    }
+
+    /**
+     * @param array $errors
+     */
+    public function setAsFailed(array $errors)
+    {
+        $this->setFailedAt(new \DateTime())
+            ->setErrors($errors)
+        ;
+    }
+
+    /**
+     * @param $name
+     * @param TaskTypeInterface $taskType
+     * @return TaskEventInterface
+     */
+    public function intialize($name, TaskTypeInterface $taskType)
+    {
+        $this->setTaskName($name)
+            ->setPayload($taskType->getPayload())
+            ->setTargetTime($taskType->getTargetTime())
+        ;
+    }
+
+    /** @return bool */
+    public function isComplete()
+    {
+        return $this->completedAt !== null;
+    }
+
+    /** @return bool */
+    public function isFailed()
+    {
+        return $this->failedAt !== null;
     }
 }

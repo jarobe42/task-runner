@@ -3,6 +3,7 @@
 namespace Jarobe\TaskRunnerBundle\Manager;
 
 use Jarobe\TaskRunnerBundle\Entity\TaskEvent;
+use Jarobe\TaskRunnerBundle\Entity\TaskEventInterface;
 use Jarobe\TaskRunnerBundle\Hydrator\HydratorInterface;
 use Jarobe\TaskRunnerBundle\Processor\ProcessorInterface;
 
@@ -37,10 +38,10 @@ class TaskManager
     }
 
     /**
-     * @param TaskEvent $taskEvent
-     * @return TaskEvent
+     * @param TaskEventInterface $taskEvent
+     * @return TaskEventInterface
      */
-    public function process(TaskEvent $taskEvent)
+    public function process(TaskEventInterface $taskEvent)
     {
         $this->taskEventManager->initiateTaskEvent($taskEvent);
 
