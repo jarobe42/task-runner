@@ -58,7 +58,7 @@ class TaskEventRepository extends EntityRepository
         $qb = $this->createQueryBuilder('te');
         $qb->andWhere('te.taskName = :taskName')
             ->andWhere('te.targetTime = :targetTime')
-            ->andWhere('te.completed IS NULL')
+            ->andWhere('te.completedAt IS NULL')
             ->andWhere('te.failedAt IS NULL')
             ->andWhere('te.initiatedAt IS NOT NULL')
         ;
