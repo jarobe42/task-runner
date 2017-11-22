@@ -40,6 +40,16 @@ class TaskEventProvider implements TaskEventProviderInterface
      * @param $typeName
      * @return TaskEvent[]
      */
+    public function getFailedTaskEvents(\DateTime $dateTime, $typeName)
+    {
+        return $this->repository->getFailedTaskEvents($dateTime, $typeName);
+    }
+
+    /**
+     * @param \DateTime $dateTime
+     * @param $typeName
+     * @return TaskEvent[]
+     */
     public function getScheduledTaskEvents(\DateTime $dateTime, $typeName)
     {
         return $this->repository->getScheduledTaskEvents($dateTime, $typeName);

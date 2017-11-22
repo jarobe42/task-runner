@@ -33,4 +33,11 @@ interface TaskEventProviderInterface
      * @return TaskEvent|null
      */
     public function getNextScheduledTaskEvent(\DateTime $dateTIme, $typeName);
+
+    /**
+     * @param \DateTime $dateTIme
+     * @param $typeName
+     * @return TaskEvent[]
+     */
+    public function getFailedTaskEvents(\DateTime $dateTIme, $typeName);
 }

@@ -38,7 +38,7 @@ abstract class AbstractTaskCommand extends ContainerAwareCommand
      * @param TaskEventInterface $taskEvent
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return TaskEvent
+     * @return TaskEventInterface
      */
     protected function process(TaskEventInterface $taskEvent, InputInterface $input, OutputInterface $output)
     {
