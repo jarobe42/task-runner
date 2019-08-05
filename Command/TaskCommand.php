@@ -41,7 +41,7 @@ abstract class TaskCommand extends AbstractTaskCommand
         $taskEvent = new TaskEvent();
         $taskEvent = $this->taskEventManager->createTaskEvent($taskEvent, $taskBuilder->getTask());
         $taskEvent = $this->process($taskEvent, $input, $output);
-        return $taskEvent->isComplete() ? 1 : 0;
+        return $taskEvent->isComplete() ? 0 : 1;
     }
 
     /**
